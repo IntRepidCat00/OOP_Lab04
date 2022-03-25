@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>426</width>
+    <width>439</width>
     <height>509</height>
    </rect>
   </property>
@@ -76,10 +76,7 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">QLabel
-{
-color: #FD1C03;
-}</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Winner:</string>
@@ -101,10 +98,7 @@ color: #FD1C03;
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">QLabel
-{
-color: #FD1C03;
-}</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string/>
@@ -128,8 +122,7 @@ color: #FD1C03;
    <property name="styleSheet">
     <string notr="true">QPushButton
  {
-	background-color: #F2F4F4; 
-	color: #FD1C03;
+	background-color: #F08080; 
 }</string>
    </property>
    <property name="text">
@@ -154,8 +147,7 @@ color: #FD1C03;
    <property name="styleSheet">
     <string notr="true">QPushButton
  {
-	background-color: #F2F4F4; 
-	color: #FD1C03;
+	background-color: #F08080; 
 }</string>
    </property>
    <property name="text">
@@ -175,7 +167,10 @@ color: #FD1C03;
     <enum>Qt::NoContextMenu</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">QTableWidget:edit-focus
+{
+selection-background-color: #F08080;
+}</string>
    </property>
    <property name="autoScroll">
     <bool>true</bool>

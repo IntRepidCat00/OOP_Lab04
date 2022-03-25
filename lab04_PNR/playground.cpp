@@ -10,7 +10,7 @@ playground::playground(QString plr1Name, QString plr2Name, QWidget *parent) :
     ui->setupUi(this);
 
     QPixmap bkgnd("D:\\Work\\University\\C1S2\\OOP\\Lab\\Lab4_reworked\\lab04_PNR\\background2.png");
-    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
@@ -86,6 +86,8 @@ void playground::on_playAgainButton_clicked()
             ui->tableWidget_PNR->item(i, j)->setText("");
         }
     }
+    ui->ExitButton->hide();
+    ui->playAgainButton->hide();
     ui->labelWinner_PNR->hide();
     ui->labelPlayerWinner_PNR->setText("");
     ui->labelPlayer_PNR->setText(player1Name);
@@ -133,7 +135,7 @@ void playground::on_tableWidget_PNR_cellClicked(int row, int column)
             ui->labelPlayerWinner_PNR->setText(player2Name);
             ui->playAgainButton->show();
             ui->ExitButton->show();
-        } if(numTurn == 9)
+        } else if(numTurn == 9)
         {
             ui->labelPlayer_PNR->setText("");
             ui->labelWinner_PNR->show();

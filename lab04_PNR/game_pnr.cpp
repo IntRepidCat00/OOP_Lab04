@@ -7,10 +7,12 @@ Game_PNR::Game_PNR(QWidget *parent)
 {
     ui->setupUi(this);
     QPixmap bkgnd("D:\\Work\\University\\C1S2\\OOP\\Lab\\Lab4_reworked\\lab04_PNR\\background1.png");
-    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
+    ui->player1Edit_PNR->viewport()->setAutoFillBackground(false);
+    ui->player2Edit_PNR->viewport()->setAutoFillBackground(false);
 }
 
 Game_PNR::~Game_PNR()

@@ -27,9 +27,9 @@ private:
     bool player1win = false;
     bool player2win = false;
 private slots:
-    void onButtonClicked();
     void on_ExitButton_clicked();
     void on_playAgainButton_clicked();
+    void on_tableWidget_PNR_cellClicked(int row, int column);
 };
 
 #endif // PLAYGROUND_H

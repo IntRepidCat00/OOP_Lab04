@@ -6,6 +6,11 @@ Game_PNR::Game_PNR(QWidget *parent)
     , ui(new Ui::Game_PNR)
 {
     ui->setupUi(this);
+    QPixmap bkgnd("D:\\Work\\University\\C1S2\\OOP\\Lab\\Lab4_reworked\\lab04_PNR\\background1.png");
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Window, bkgnd);
+    this->setPalette(palette);
 }
 
 Game_PNR::~Game_PNR()

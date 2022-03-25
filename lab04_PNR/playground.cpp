@@ -8,19 +8,22 @@ playground::playground(QString plr1Name, QString plr2Name, QWidget *parent) :
     player2Name(plr2Name)
 {
     ui->setupUi(this);
-    connect(ui->pushButton_1_PNR, SIGNAL(released()), this, SLOT(onButtonClicked()));
-    connect(ui->pushButton_2_PNR, SIGNAL(released()), this, SLOT(onButtonClicked()));
-    connect(ui->pushButton_3_PNR, SIGNAL(released()), this, SLOT(onButtonClicked()));
-    connect(ui->pushButton_4_PNR, SIGNAL(released()), this, SLOT(onButtonClicked()));
-    connect(ui->pushButton_5_PNR, SIGNAL(released()), this, SLOT(onButtonClicked()));
-    connect(ui->pushButton_6_PNR, SIGNAL(released()), this, SLOT(onButtonClicked()));
-    connect(ui->pushButton_7_PNR, SIGNAL(released()), this, SLOT(onButtonClicked()));
-    connect(ui->pushButton_8_PNR, SIGNAL(released()), this, SLOT(onButtonClicked()));
-    connect(ui->pushButton_9_PNR, SIGNAL(released()), this, SLOT(onButtonClicked()));
+
+    QPixmap bkgnd("D:\\Work\\University\\C1S2\\OOP\\Lab\\Lab4_reworked\\lab04_PNR\\background2.png");
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Window, bkgnd);
+    this->setPalette(palette);
+
     ui->labelPlayer_PNR->setText(player1Name);
     ui->labelWinner_PNR->hide();
     ui->ExitButton->hide();
     ui->playAgainButton->hide();
+    ui->tableWidget_PNR->verticalHeader()->setVisible(false);
+    ui->tableWidget_PNR->horizontalHeader()->setVisible(false);
+    ui->tableWidget_PNR->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->tableWidget_PNR->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->tableWidget_PNR->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
 playground::~playground()
@@ -31,54 +34,84 @@ playground::~playground()
 bool playground::winCombination(QString symbol)
 {
     symbol= symbol + symbol + symbol;
-    if(ui->pushButton_1_PNR->text() + ui->pushButton_2_PNR->text() + ui->pushButton_3_PNR->text() == symbol)
+    if(ui->tableWidget_PNR->item(0, 0)->text() + ui->tableWidget_PNR->item(0, 1)->text() +
+            ui->tableWidget_PNR->item(0, 2)->text() == symbol)
     {
         return true;
-    } else if(ui->pushButton_4_PNR->text() + ui->pushButton_5_PNR->text() + ui->pushButton_6_PNR->text() == symbol)
+    } else if(ui->tableWidget_PNR->item(1, 0)->text() + ui->tableWidget_PNR->item(1, 1)->text() +
+              ui->tableWidget_PNR->item(1, 2)->text() == symbol)
     {
         return true;
-    } else if(ui->pushButton_7_PNR->text() + ui->pushButton_8_PNR->text() + ui->pushButton_9_PNR->text() == symbol)
+    } else if(ui->tableWidget_PNR->item(2, 0)->text() + ui->tableWidget_PNR->item(2, 1)->text() +
+              ui->tableWidget_PNR->item(2, 2)->text() == symbol)
     {
         return true;
-    } else if(ui->pushButton_1_PNR->text() + ui->pushButton_5_PNR->text() + ui->pushButton_9_PNR->text() == symbol)
+    } else if(ui->tableWidget_PNR->item(0, 0)->text() + ui->tableWidget_PNR->item(1, 0)->text() +
+              ui->tableWidget_PNR->item(2, 0)->text() == symbol)
     {
         return true;
-    } else if(ui->pushButton_3_PNR->text() + ui->pushButton_8_PNR->text() + ui->pushButton_7_PNR->text() == symbol)
+    } else if(ui->tableWidget_PNR->item(0, 1)->text() + ui->tableWidget_PNR->item(1, 1)->text() +
+              ui->tableWidget_PNR->item(2, 1)->text() == symbol)
     {
         return true;
-    } else if(ui->pushButton_1_PNR->text() + ui->pushButton_4_PNR->text() + ui->pushButton_7_PNR->text() == symbol)
+    } else if(ui->tableWidget_PNR->item(0, 2)->text() + ui->tableWidget_PNR->item(1, 2)->text() +
+              ui->tableWidget_PNR->item(2, 2)->text() == symbol)
     {
         return true;
-    } else if(ui->pushButton_2_PNR->text() + ui->pushButton_5_PNR->text() + ui->pushButton_8_PNR->text() == symbol)
+    } else if(ui->tableWidget_PNR->item(0, 0)->text() + ui->tableWidget_PNR->item(1, 1)->text() +
+              ui->tableWidget_PNR->item(2, 2)->text() == symbol)
     {
         return true;
-    } else if(ui->pushButton_3_PNR->text() + ui->pushButton_6_PNR->text() + ui->pushButton_9_PNR->text() == symbol)
+    } else if(ui->tableWidget_PNR->item(0, 2)->text() + ui->tableWidget_PNR->item(1, 1)->text() +
+              ui->tableWidget_PNR->item(2, 0)->text() == symbol)
     {
         return true;
     } else
-    {
-        return false;
-    }
+
+    return false;
 }
 
-void playground::onButtonClicked()
+void playground::on_ExitButton_clicked()
+{
+    QApplication::quit();
+}
+
+
+void playground::on_playAgainButton_clicked()
+{
+    for(int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {
+            ui->tableWidget_PNR->item(i, j)->setText("");
+        }
+    }
+    ui->labelWinner_PNR->hide();
+    ui->labelPlayerWinner_PNR->setText("");
+    ui->labelPlayer_PNR->setText(player1Name);
+    numTurn = 0;
+    player1win = false;
+    player2win = false;
+    turn = true;
+}
+
+
+void playground::on_tableWidget_PNR_cellClicked(int row, int column)
 {
     if(!(player1win || player2win))
     {
-        QPushButton *button = (QPushButton*)sender();
-        if(button->text().isEmpty())
+        if(ui->tableWidget_PNR->item(row, column)->text().isEmpty())
         {
-            button->setChecked(true);
             if(turn)
             {
-                button->setText("x");
+                ui->tableWidget_PNR->item(row, column)->setText("x");
                 turn = false;
                 ui->labelPlayer_PNR->setText(player2Name);
                 player1win = winCombination("x");
                 numTurn++;
             } else
             {
-                button->setText("o");
+                ui->tableWidget_PNR->item(row, column)->setText("o");
                 turn = true;
                 ui->labelPlayer_PNR->setText(player1Name);
                 player2win = winCombination("o");
@@ -109,32 +142,5 @@ void playground::onButtonClicked()
             ui->ExitButton->show();
         }
     }
-}
-
-
-void playground::on_ExitButton_clicked()
-{
-    QApplication::quit();
-}
-
-
-void playground::on_playAgainButton_clicked()
-{
-    ui->pushButton_1_PNR->setText("");
-    ui->pushButton_2_PNR->setText("");
-    ui->pushButton_3_PNR->setText("");
-    ui->pushButton_4_PNR->setText("");
-    ui->pushButton_5_PNR->setText("");
-    ui->pushButton_6_PNR->setText("");
-    ui->pushButton_7_PNR->setText("");
-    ui->pushButton_8_PNR->setText("");
-    ui->pushButton_9_PNR->setText("");
-    ui->labelWinner_PNR->hide();
-    ui->labelPlayerWinner_PNR->setText("");
-    ui->labelPlayer_PNR->setText(player1Name);
-    numTurn = 0;
-    player1win = false;
-    player2win = false;
-    turn = true;
 }
 

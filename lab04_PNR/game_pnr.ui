@@ -25,6 +25,10 @@
   <property name="windowTitle">
    <string>Tic-Tac-Toe</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget 
+{background-image: url(./backround1.png) }</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTextEdit" name="player1Edit_PNR">
     <property name="geometry">
@@ -34,6 +38,18 @@
       <width>371</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Gang of Three</family>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTextEdit
+ {
+	background-color: #616A6B;
+	color: white;
+}</string>
     </property>
    </widget>
    <widget class="QTextEdit" name="player2Edit_PNR">
@@ -45,6 +61,18 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Gang of Three</family>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTextEdit
+ {
+	background-color: #616A6B;
+	color: white;
+}</string>
+    </property>
    </widget>
    <widget class="QLabel" name="player1Label_PNR">
     <property name="geometry">
@@ -54,6 +82,17 @@
       <width>111</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Gang of Three</family>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel
+{
+color: white;
+}</string>
     </property>
     <property name="text">
      <string>Player 1 name:</string>
@@ -68,6 +107,17 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Gang of Three</family>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel
+{
+color: white;
+}</string>
+    </property>
     <property name="text">
      <string>Player 2 name:</string>
     </property>
@@ -80,6 +130,19 @@
       <width>161</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Gang of Three</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+ {
+	background-color: #616A6B; 
+	color: white;
+}</string>
     </property>
     <property name="text">
      <string>Start Game</string>
@@ -96,8 +159,15 @@
     </property>
     <property name="font">
      <font>
+      <family>Gang of Three</family>
       <pointsize>20</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel
+{
+color: white;
+}</string>
     </property>
     <property name="text">
      <string>Tic-Tac-Toe</string>

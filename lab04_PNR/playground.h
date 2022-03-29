@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QPushButton>
+#include <QMediaPlayer>
+#include <QAudioOutput>
 
 namespace Ui {
 class playground;
@@ -26,10 +28,19 @@ private:
     int numTurn = 0;
     bool player1win = false;
     bool player2win = false;
+    bool soundMute = false;
+    QMediaPlayer *player;
+    QAudioOutput *audioOutput;
+    QString music[4];
+    int currentSong = 0;
 private slots:
     void on_ExitButton_clicked();
     void on_playAgainButton_clicked();
     void on_tableWidget_PNR_cellClicked(int row, int column);
+    void on_mute_clicked();
+    void on_soundSlider_PNR_valueChanged(int value);
+    void on_nextSong_PNR_clicked();
+    void on_previousSong_PNR_clicked();
 };
 
 #endif // PLAYGROUND_H

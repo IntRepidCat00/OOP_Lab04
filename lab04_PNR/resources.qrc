@@ -2,5 +2,8 @@
     <qresource prefix="/res">
         <file>background1.png</file>
         <file>background2.png</file>
+        <file>muteIcon.png</file>
+        <file>onIcon.png</file>
+        <file>appIcon.png</file>
     </qresource>
 </RCC>

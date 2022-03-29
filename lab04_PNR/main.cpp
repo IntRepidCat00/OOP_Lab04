@@ -7,7 +7,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    QPixmap pixmap("D:\\Work\\University\\C1S2\\OOP\\Lab\\Lab4\\lab04_PNR\\splashFancy.png");
+    QPixmap pixmap("D:\\Work\\University\\C1S2\\OOP\\Lab\\Lab4_reworked\\lab04_PNR\\splashScreen");
     QSplashScreen splash(pixmap);
     splash.show();
     QThread::msleep(500);

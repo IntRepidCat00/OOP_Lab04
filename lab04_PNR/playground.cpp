@@ -24,6 +24,18 @@ playground::playground(QString plr1Name, QString plr2Name, QWidget *parent) :
     ui->tableWidget_PNR->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->tableWidget_PNR->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->tableWidget_PNR->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->mute->setIcon(QIcon(":/res/onIcon.png"));
+    player = new QMediaPlayer;
+    audioOutput = new QAudioOutput;
+    player->setAudioOutput(audioOutput);
+    music[0] = "D:\\Work\\University\\C1S2\\OOP\\Lab\\Lab4_reworked\\lab04_PNR\\music\\Yahari Ore no Seishun Love Comedy wa Machigatteiru Opening 1 {Yanagi Nagi} By_Yukitoki.mp3";
+    music[1] = "D:\\Work\\University\\C1S2\\OOP\\Lab\\Lab4_reworked\\lab04_PNR\\music\\the peggies「センチメートル」Music Video.mp3";
+    music[2] = "D:\\Work\\University\\C1S2\\OOP\\Lab\\Lab4_reworked\\lab04_PNR\\music\\Kiminosei.mp3";
+    music[3] = "D:\\Work\\University\\C1S2\\OOP\\Lab\\Lab4_reworked\\lab04_PNR\\music\\Sono Bisque Doll wa Koi wo Suru Opening Full『San San Days』by Spira Spica.mp3";
+    player->setSource(QUrl::fromLocalFile(music[0]));
+    player->setLoops(QMediaPlayer::Infinite);
+    audioOutput->setVolume(0.5);
+    player->play();
 }
 
 playground::~playground()
@@ -144,5 +156,56 @@ void playground::on_tableWidget_PNR_cellClicked(int row, int column)
             ui->ExitButton->show();
         }
     }
+}
+
+
+void playground::on_mute_clicked()
+{
+
+    if(soundMute)
+    {
+        ui->mute->setIcon(QIcon(":/res/onIcon.png"));
+        soundMute = false;
+        audioOutput->setMuted(false);
+    } else
+    {
+        ui->mute->setIcon(QIcon(":/res/muteIcon.png"));
+        soundMute = true;
+        audioOutput->setMuted(true);
+    }
+}
+
+
+
+void playground::on_soundSlider_PNR_valueChanged(int value)
+{
+    qreal linearVolume = QAudio::convertVolume(value / qreal(100.0),
+                                                  QAudio::LogarithmicVolumeScale,
+                                                  QAudio::LinearVolumeScale);
+    audioOutput->setVolume(linearVolume);
+}
+
+
+void playground::on_nextSong_PNR_clicked()
+{
+    currentSong++;
+    if(currentSong > 3)
+    {
+        currentSong = 0;
+    }
+    player->setSource(QUrl::fromLocalFile(music[currentSong]));
+    player->play();
+}
+
+
+void playground::on_previousSong_PNR_clicked()
+{
+    currentSong--;
+    if(currentSong < 0)
+    {
+        currentSong = 3;
+    }
+    player->setSource(QUrl::fromLocalFile(music[currentSong]));
+    player->play();
 }
 

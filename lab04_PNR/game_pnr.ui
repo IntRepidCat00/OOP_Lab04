@@ -25,9 +25,12 @@
   <property name="windowTitle">
    <string>Tic-Tac-Toe</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>appIcon.png</normaloff>appIcon.png</iconset>
+  </property>
   <property name="styleSheet">
-   <string notr="true">QWidget 
-{background-image: url(./backround1.png) }</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTextEdit" name="player1Edit_PNR">
